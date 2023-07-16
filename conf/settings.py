@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
 
     'dv_users',
+    'dv',
 ]
 
 REST_FRAMEWORK = {
@@ -140,6 +141,9 @@ AUTH_USER_MODEL = 'dv_users.DVUser'
 from datetime import timedelta
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=365),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=365),
 }
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = Path(BASE_DIR, 'media')
