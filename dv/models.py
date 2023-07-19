@@ -18,4 +18,4 @@ class VoiceSample(models.Model):
 
 class Tone(models.Model):
     user = models.ForeignKey('dv_users.DVUser', on_delete=models.CASCADE)
-    tone = models.FileField(upload_to=tones_directory_path)
+    weights = models.FileField(upload_to=tones_directory_path)
