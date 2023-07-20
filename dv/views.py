@@ -1,6 +1,7 @@
 from rest_framework import generics, permissions
 from .models import VoiceSample, Speech
 from .serializers import VoiceSampleSerializer, SpeechSerializer
+from .tasks import text_to_speech_task
 
 class VoiceSampleListCreateView(generics.ListCreateAPIView):
     serializer_class = VoiceSampleSerializer
@@ -26,7 +27,8 @@ class SpeechListCreateView(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        instance = serializer.save(user=self.request.user)
+        text_to_speech_task.delay(instance.id)
 
     def get_queryset(self):
         user = self.request.user
