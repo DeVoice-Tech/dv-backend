@@ -1,6 +1,6 @@
 from rest_framework import generics, permissions
-from .models import VoiceSample
-from .serializers import VoiceSampleSerializer
+from .models import VoiceSample, Speech
+from .serializers import VoiceSampleSerializer, SpeechSerializer
 
 class VoiceSampleListCreateView(generics.ListCreateAPIView):
     serializer_class = VoiceSampleSerializer
@@ -20,3 +20,22 @@ class VoiceSampleRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView
     def get_queryset(self):
         user = self.request.user
         return VoiceSample.objects.filter(user=user)
+    
+class SpeechListCreateView(generics.ListCreateAPIView):
+    serializer_class = SpeechSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+    def get_queryset(self):
+        user = self.request.user
+        return Speech.objects.filter(user=user)
+    
+class SpeechRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = SpeechSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return Speech.objects.filter(user=user)
