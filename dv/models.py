@@ -1,5 +1,7 @@
 from __future__ import annotations
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 import dv.utils as utils
 
@@ -29,6 +31,7 @@ class Speech(models.Model):
         
     user = models.ForeignKey('dv_users.DVUser', on_delete=models.CASCADE)
     text = models.TextField()
+    emotion = models.CharField(max_length=100)
     status = models.CharField(
         max_length=1, 
         choices=StatusChoices.choices,
@@ -36,8 +39,11 @@ class Speech(models.Model):
     )
     wav = models.FileField(upload_to=utils.speech_directory_path)
 
-    def __str__(self):
-        return self.text
+@receiver(post_save, sender=Speech)
+def edit_wav_path_on_first_save_if_empty(sender, instance, created, **kwargs):
+    if created and not instance.wav:
+        instance.wav = utils.speech_directory_path(instance, f"{instance.pk}.wav")
+        instance.save()
 
 class Tone(models.Model):
     """

@@ -15,7 +15,7 @@ class VoiceSampleSerializer(serializers.ModelSerializer):
 class SpeechSerializer(serializers.ModelSerializer):
     class Meta:
         model = Speech
-        fields = ['id', 'user', 'text', 'status', 'wav']
+        fields = ['id', 'user', 'text', 'emotion', 'status', 'wav']
         read_only_fields = ['user', 'status', 'wav']
 
     def create(self, validated_data):
