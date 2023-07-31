@@ -1,5 +1,5 @@
 from django.apps import AppConfig
-from tortoise.api import TextToSpeech
+# from tortoise.api import TextToSpeech
 
 
 class DvConfig(AppConfig):
@@ -10,4 +10,4 @@ class DvConfig(AppConfig):
     # NOTE: TORTOISE_MODELS_DIR should be set in the environment
     # with the path to the downloaded models. Otherwise, the
     # default models will be DOWNLOADED (shit's huge).
-    tortoise_tts = TextToSpeech(use_deepspeed=True, half=True, kv_cache=True)
+    # tortoise_tts = TextToSpeech(use_deepspeed=True, half=True, kv_cache=True)
