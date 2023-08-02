@@ -3,7 +3,7 @@ version: '3'
 services:
   webapp:
     build: ./
-    image: devoice.azurecr.io/webapp
+    # image: devoice.azurecr.io/webapp
     command: >
       sh -c "
           python manage.py migrate &&
@@ -25,12 +25,11 @@ services:
   redis:
     image: "redis:latest"
     ports:
-      - "6379:6379"
+      - "6666:6379"
 
   celery:
-    image: devoice.azurecr.io/webapp
-    build:
-      context: ./
+    # image: devoice.azurecr.io/celery
+    build: ./
     command: celery -A conf worker --loglevel=info
     environment:
       - REDIS_URL=redis://redis:6379/0
@@ -41,18 +40,5 @@ services:
 
 volumes:
     app:
-      driver: azure_file
-      driver_opts:
-          share_name: devoiceshare
-          storage_account_name: devoicestorage
     models:
-      driver: azure_file
-      driver_opts:
-          share_name: devoiceshare
-          storage_account_name: devoicestorage
     cache:
-      driver: azure_file
-      driver_opts:
-          share_name: devoiceshare
-          storage_account_name: devoicestorage
-      
