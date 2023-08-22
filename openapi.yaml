@@ -1,0 +1,482 @@
+openapi: 3.0.3
+info:
+  title: DeVoice API
+  version: 1.0.0
+  description: The official API for DeVoice.
+paths:
+  /api/v1/dv/speech/:
+    get:
+      operationId: v1_dv_speech_list
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Speech'
+          description: ''
+    post:
+      operationId: v1_dv_speech_create
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Speech'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Speech'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Speech'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Speech'
+          description: ''
+  /api/v1/dv/speech/{id}/:
+    get:
+      operationId: v1_dv_speech_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Speech'
+          description: ''
+    put:
+      operationId: v1_dv_speech_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Speech'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Speech'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Speech'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Speech'
+          description: ''
+    patch:
+      operationId: v1_dv_speech_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSpeech'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSpeech'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSpeech'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Speech'
+          description: ''
+    delete:
+      operationId: v1_dv_speech_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/dv/voice_sample/:
+    get:
+      operationId: v1_dv_voice_sample_list
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VoiceSample'
+          description: ''
+    post:
+      operationId: v1_dv_voice_sample_create
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoiceSample'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/VoiceSample'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/VoiceSample'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoiceSample'
+          description: ''
+  /api/v1/dv/voice_sample/{id}/:
+    get:
+      operationId: v1_dv_voice_sample_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoiceSample'
+          description: ''
+    put:
+      operationId: v1_dv_voice_sample_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoiceSample'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/VoiceSample'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/VoiceSample'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoiceSample'
+          description: ''
+    patch:
+      operationId: v1_dv_voice_sample_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedVoiceSample'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedVoiceSample'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedVoiceSample'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoiceSample'
+          description: ''
+    delete:
+      operationId: v1_dv_voice_sample_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/dv_users/:
+    get:
+      operationId: v1_dv_users_list
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DVUser'
+          description: ''
+    post:
+      operationId: v1_dv_users_create
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DVUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DVUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DVUser'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DVUser'
+          description: ''
+  /api/v1/dv_users/token/:
+    post:
+      operationId: v1_dv_users_token_create
+      description: |-
+        Takes a set of user credentials and returns an access and refresh JSON web
+        token pair to prove the authentication of those credentials.
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DVUserTokenObtainPair'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DVUserTokenObtainPair'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DVUserTokenObtainPair'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DVUserTokenObtainPair'
+          description: ''
+components:
+  schemas:
+    DVUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          maxLength: 50
+        email:
+          type: string
+          format: email
+          maxLength: 100
+        is_active:
+          type: boolean
+        is_admin:
+          type: boolean
+      required:
+      - email
+      - id
+      - username
+    DVUserTokenObtainPair:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+          writeOnly: true
+      required:
+      - password
+      - username
+    ParentEnum:
+      enum:
+      - F
+      - M
+      type: string
+      description: |-
+        * `F` - Father
+        * `M` - Mother
+    PatchedSpeech:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          type: integer
+          readOnly: true
+        text:
+          type: string
+        emotion:
+          type: string
+          maxLength: 100
+        status:
+          allOf:
+          - $ref: '#/components/schemas/StatusEnum'
+          readOnly: true
+        wav:
+          type: string
+          format: uri
+          readOnly: true
+    PatchedVoiceSample:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        wav:
+          type: string
+          format: uri
+        parent:
+          $ref: '#/components/schemas/ParentEnum'
+    Speech:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          type: integer
+          readOnly: true
+        text:
+          type: string
+        emotion:
+          type: string
+          maxLength: 100
+        status:
+          allOf:
+          - $ref: '#/components/schemas/StatusEnum'
+          readOnly: true
+        wav:
+          type: string
+          format: uri
+          readOnly: true
+      required:
+      - emotion
+      - id
+      - status
+      - text
+      - user
+      - wav
+    StatusEnum:
+      enum:
+      - P
+      - C
+      type: string
+      description: |-
+        * `P` - Pending
+        * `C` - Complete
+    VoiceSample:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        wav:
+          type: string
+          format: uri
+        parent:
+          $ref: '#/components/schemas/ParentEnum'
+      required:
+      - id
+      - parent
+      - wav
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
